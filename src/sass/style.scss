@@ -38,3 +38,135 @@
 	margin-left: 20px;
 	margin-top: calc(50% - 7px);
 }
+
+:root {
+  --body-bg: #36474f;
+  --nav-link: #445964;
+  --nav-hover: #546e7b;
+  --header-bg: #4eb74c;
+  --link-hover: #2a9031;
+  --text: #fff;
+}
+body {
+  min-height: 100vh;
+  background: var(--body-bg);
+}
+header {
+  position: absolute;
+  width: 100%;
+  min-height: 62px;
+  background: var(--header-bg);
+  padding: 0 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .logo {
+  color: var(--text);
+  font-size: 1.75em;
+  font-weight: 600;
+  text-decoration: none;
+}
+header ul {
+  position: relative;
+}
+header ul li {
+  position: relative;
+  list-style: none;
+  float: left;
+}
+header ul li a {
+  color: var(--text);
+  font-size: 1.1em;
+  padding: 20px 25px;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.2s ease all;
+}
+header ul li a:hover {
+  background: var(--link-hover);
+}
+header ul li ul {
+  position: absolute;
+  left: 0;
+  width: 200px;
+  background: var(--nav-link);
+  display: none;
+}
+header ul li:hover > ul {
+  display: block;
+}
+header ul li ul li {
+  position: relative;
+  width: 100%;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+header ul li ul li ul {
+  top: -1px;
+  left: 200px;
+}
+@media (max-width: 1024px) {
+  header {
+    padding: 10px 20px;
+  }
+  header nav {
+    position: absolute;
+    width: 100%;
+    top: 62px;
+    left: 0;
+    background: var(--nav-link);
+    display: none;
+  }
+  header.active nav {
+    display: initial;
+  }
+  header nav ul li {
+    width: 100%;
+  }
+  header nav ul li ul {
+    position: relative;
+    width: 100%;
+    left: 0;
+  }
+  header ul li ul li ul {
+    top: 0;
+    left: 0;
+  }
+  header nav ul li:hover ul li {
+    background: var(--nav-hover);
+  }
+  .menuToggle {
+    position: relative;
+    width: 40px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .menuToggle::before { 
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: var(--text);
+    transform: translateY(-12px);
+    box-shadow: 0 12px var(--text);
+  }
+  .menuToggle::after { 
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: var(--text);
+    transform: translateY(12px);
+  }
+  header.active .menuToggle::before { 
+    transform: rotate(45deg);
+    box-shadow: 0 0px var(--text);
+  }
+  header.active .menuToggle::after { 
+    transform: rotate(315deg);
+  }
+}
